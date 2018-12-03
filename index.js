@@ -17,6 +17,7 @@ module.exports = function (fileName) {
 
     let data;
     let firstFile = null;
+    const LANG = [];
 
     function bufferContents(file) {
         if (!firstFile) {
@@ -38,8 +39,9 @@ module.exports = function (fileName) {
         const lang = fileName.split('.').slice(0)[0];
 
         const json = parseJsonLanguage(jsonData, lang);
+        LANG.push(lang);
         if (data) {
-            data = combineJson(data, json);
+            data = combineJson(data, json, LANG);
         } else {
             data = json;
         }

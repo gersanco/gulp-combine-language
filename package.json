@@ -1,0 +1,27 @@
+{
+  "name": "gulp-combine-language",
+  "version": "0.0.1",
+  "description": "Gulp plugin to combine JSON language files",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "files": ["index.js", "lib/", "README.md"],
+  "keywords": [
+    "gulp",
+    "files",
+    "languages"
+  ],
+  "author": "gersanco",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-util": "~2.2.0",
+    "through": "*"
+  },
+  "private": false
+}

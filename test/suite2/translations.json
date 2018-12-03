@@ -1,0 +1,27 @@
+{
+    "FIRST": {
+        "HELLO": {
+            "en": "Hello",
+            "es": "Hola",
+            "eu": "Kaixo"
+        }
+    },
+    "SECOND": {
+        "THIRD": {
+            "WORLD": {
+                "en": "World",
+                "es": "Mundo",
+                "eu": "Mundu"
+            }
+        },
+        "TEST": {
+            "en": "Test",
+            "es": "Test",
+            "eu": "Test"
+        },
+        "TEST2": {
+            "es": "Test2",
+            "eu": "Test2"
+        }
+    }
+}

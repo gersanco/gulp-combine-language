@@ -1,0 +1,11 @@
+{
+    "FIRST": {
+        "HELLO": "Hola"
+    },
+    "SECOND": {
+        "THIRD": {
+            "WORLD": "Mundo"
+        },
+        "TEST": "Test"
+    }
+}

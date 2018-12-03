@@ -6,7 +6,11 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec"
   },
-  "files": ["index.js", "lib/", "README.md"],
+  "files": [
+    "index.js",
+    "lib/",
+    "README.md"
+  ],
   "keywords": [
     "gulp",
     "files",
@@ -16,12 +20,12 @@
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "gulp": "^3.9.1"
   },
   "dependencies": {
-    "gulp": "^3.9.1",
     "gulp-util": "~2.2.0",
-    "through": "*"
+    "through": "~2.3.8"
   },
   "private": false
 }

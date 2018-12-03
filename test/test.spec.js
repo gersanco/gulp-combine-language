@@ -13,8 +13,11 @@ const {
 
 
 describe('Combine JSON', () => {
+    const suite1Path = __dirname + '/suite1/';
+    const suite2Path = __dirname + '/suite2/';
     beforeEach(async () => {
-        await removeFile(__dirname + '/translations.json');
+        await removeFile(`${suite1Path}translations.json`);
+        await removeFile(`${suite2Path}translations.json`);
     });
     it('should return same json with language include as key', () => {
         const json = require('./suite2/en.json');
@@ -31,7 +34,7 @@ describe('Combine JSON', () => {
         const json2 = require('./suite2/es.json');
         const jsonParse1 = parseJsonLanguage(json1, 'en');
         const jsonParse2 = parseJsonLanguage(json2, 'es');
-        const newJson = combineJson(jsonParse1, jsonParse2);
+        const newJson = combineJson(jsonParse1, jsonParse2, ['en', 'es']);
         let keys = Object.keys(newJson);
         let element = newJson[keys[0]];
         keys = Object.keys(element);
@@ -40,19 +43,42 @@ describe('Combine JSON', () => {
         expect(keys[0]).to.equal('en');
         expect(keys[1]).to.equal('es');
     })
-    it('should there 3 languages in a key', () => {
-        gulp.src(__dirname + '/suite1/*.json')
+    it(`should combine json with has't exist key and has 2 languages as key`, () => {
+        const json1 = require('./suite2/en.json');
+        const json2 = require('./suite2/es.json');
+        const jsonParse1 = parseJsonLanguage(json1, 'en');
+        const jsonParse2 = parseJsonLanguage(json2, 'es');
+        const newJson = combineJson(jsonParse1, jsonParse2, ['en', 'es']);
+        let keys = Object.keys(newJson);
+        let element = newJson[keys[1]];
+        keys = Object.keys(element);
+        element = element[keys[1]];
+        keys = Object.keys(element);
+        expect(keys[0]).to.equal('en');
+        expect(keys[1]).to.equal('es');
+    })
+    it('should there combine 3 file', (done) => {
+        gulp.src(suite1Path + '*.json')
             .pipe(combine_languagefiles("translations.json"))
-            .pipe(gulp.dest(__dirname + '/suite1/'));
+            .pipe(gulp.dest(suite1Path))
+            .once('end', () => {
+                expect(fs.existsSync(`${suite1Path}translations.json`)).to.equal(true);
+                done();
+            })
     });
 
-    it('should there 3 languages in a key', () => {
-        gulp.src(__dirname + '/suite2/*.json')
+    it('should there combine 3 files with different levels', (done) => {
+        gulp.src(suite2Path + '*.json')
             .pipe(combine_languagefiles("translations.json"))
-            .pipe(gulp.dest(__dirname + '/suite2/'));
+            .pipe(gulp.dest(suite2Path))
+            .once('end', () => {
+                expect(fs.existsSync(`${suite2Path}translations.json`)).to.equal(true);
+                done();
+            })
     });
 
     afterEach(async () => {
-        await removeFile(__dirname + '/translations.json');
+        await removeFile(`${suite1Path}translations.json`);
+        await removeFile(`${suite2Path}translations.json`);
     })
 });

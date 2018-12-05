@@ -18,6 +18,10 @@
   ],
   "author": "gersanco",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gersanco/gulp-combine-language.git"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^5.2.0",

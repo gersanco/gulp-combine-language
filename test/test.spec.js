@@ -15,9 +15,10 @@ const {
 describe('Combine JSON', () => {
     const suite1Path = __dirname + '/suite1/';
     const suite2Path = __dirname + '/suite2/';
-    beforeEach(async () => {
-        await removeFile(`${suite1Path}translations.json`);
-        await removeFile(`${suite2Path}translations.json`);
+    beforeEach(done => {
+        removeFile(`${suite1Path}translations.json`);
+        removeFile(`${suite2Path}translations.json`);
+        done();
     });
     it('should return same json with language include as key', () => {
         const json = require('./suite2/en.json');
@@ -77,8 +78,9 @@ describe('Combine JSON', () => {
             })
     });
 
-    afterEach(async () => {
-        await removeFile(`${suite1Path}translations.json`);
-        await removeFile(`${suite2Path}translations.json`);
+    afterEach(done => {
+        removeFile(`${suite1Path}translations.json`);
+        removeFile(`${suite2Path}translations.json`);
+        done();
     })
 });

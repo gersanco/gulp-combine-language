@@ -1,8 +1,7 @@
 const through = require('through');
 const path = require('path');
-const gutil = require('gulp-util');
-const PluginError = gutil.PluginError;
-const File = gutil.File;
+const PluginError = require('plugin-error');
+const Vinyl = require('vinyl');
 
 const {
     parseJsonLanguage,
@@ -49,7 +48,7 @@ module.exports = function (fileName) {
 
     function endStream() {
         const joinedPath = path.join(firstFile.base, fileName);
-        const joinedFile = new File({
+        const joinedFile = new Vinyl({
             cwd: firstFile.cwd,
             base: firstFile.base,
             path: joinedPath,
